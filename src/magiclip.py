@@ -1,7 +1,9 @@
 """magiclip class file"""
+import logging
 import time
 from collections.abc import Callable
 from itertools import count
+import signal
 
 import pyperclip
 
@@ -18,8 +20,18 @@ class MagiClip:
         self.original_clip = ""
         self.processed_clip = ""
         self.n = n
+        self.ctrl_c_is_detected = False
+        # catch the interruption
+        signal.signal(signal.SIGINT, self.ctrl_detection)
 
         self.lambda_fn = lambda_fn
+
+    def ctrl_detection(self, signum, frame):
+        """detect when ctrl+c is hit"""
+        self.ctrl_c_is_detected = True
+        signal.signal(signal.SIGINT, signal.SIG_DFL)
+        msg = f"ctrl+c detected, exiting with signum={signum} and frame={bool(frame)}"
+        logging.warning(msg)
 
     def load_original_clip(self) -> bool:
         """update text from clipboard"""
@@ -49,5 +61,8 @@ class MagiClip:
                 self.update_processed_clip()
                 print(f"\"{self.original_clip}\" -> \"{self.processed_clip}\"")
                 print("")
+
+            if self.ctrl_c_is_detected:
+                break
 
             time.sleep(self.dt)
