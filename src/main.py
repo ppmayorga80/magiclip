@@ -40,7 +40,7 @@ Options:
     --n=N                   define the number of iterations [default: None]
 """
 from docopt import docopt
-from magiclip.magi_clip import MagiClip
+from magiclip import MagiClip
 
 
 def lambda_lower(x):
@@ -48,7 +48,7 @@ def lambda_lower(x):
 
 
 def lambda_excel(x):
-    return ",".join([xk.strip("\n") for xk in x.split()])
+    return ",".join([xk.strip() for xk in x.split("\n")])
 
 
 def entry_point(args):

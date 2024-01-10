@@ -1,5 +1,5 @@
 scripts:
-  version: python -c "from magiclip import __version__;print(__version__)"
+  version: python -c "import toml;p=toml.load(open('pyproject.toml'));print(p['project']['version'])"
   yapf: bash scripts/yapf.sh --apply
   pylint: bash scripts/pylint.sh
   pytest: bash scripts/pytest.sh
