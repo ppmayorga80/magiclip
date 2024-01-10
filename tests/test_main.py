@@ -1,6 +1,6 @@
 """test the main file"""
 from docopt import docopt
-from magiclip.main import entry_point, __doc__
+from magiclip.__main__ import entry_point, __doc__
 
 
 def test_main():

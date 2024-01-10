@@ -24,4 +24,4 @@ classifiers = [
 dependencies = {file = ["requirements.txt"]}
 
 [project.scripts]
-magiclip = "magiclip.main:main"
+magiclip = "magiclip.__main__:main"
