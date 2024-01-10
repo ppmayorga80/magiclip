@@ -2,9 +2,8 @@
 from unittest.mock import patch
 
 import pyperclip
-from docopt import docopt
 
-from magiclip.magiclip import MagiClip, main, __doc__
+from magiclip.magiclip import MagiClip
 
 
 def test_constructor():
@@ -56,10 +55,3 @@ def test_run():
     clip = MagiClip(lambda_fn=lambda x: x, dt=0.25, n=2)
     clip.run()
     assert clip
-
-
-def test_main():
-    """test the main file with arguments"""
-    main(docopt(__doc__, argv=["--dt=0.01", "--n=2", "--lambda-lower"]))
-    main(docopt(__doc__, argv=["--dt=0.01", "--n=2", "--lambda-excel"]))
-    main(docopt(__doc__, argv=["--dt=0.01", "--n=2", "--lambda=lambda x:x"]))

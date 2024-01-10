@@ -10,4 +10,3 @@ echo "                                                                   "
 
 python -m build
 twine upload --verbose dist/*
-
