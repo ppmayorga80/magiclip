@@ -19,9 +19,9 @@ Use case B (transform excel rows to csv)
 The solution will be:
     1. start magiclip with the following lambda:
         lambda x: ",".join([xk.strip() for xk in x.split()])
-    2. open your excel file (left half page)
+    2. open your Excel file (left half page)
     3. open your destination file (right half page)
-    4. copy cells from excel and paste results to your destination
+    4. copy cells from Excel and paste results to your destination
 
 all the magic happens behind scenes!!!!
 
@@ -40,10 +40,15 @@ Options:
     --n=N                   define the number of iterations [default: None]
 """
 from docopt import docopt
-from magiclip.magiclip import MagiClip
+from magiclip.magi_clip import MagiClip
 
-LAMBDA_LOWER = lambda x: str(x).lower()
-LAMBDA_EXCEL = lambda x: ",".join([xk.strip("\n") for xk in x.split()])
+
+def lambda_lower(x):
+    return str(x).lower()
+
+
+def lambda_excel(x):
+    return ",".join([xk.strip("\n") for xk in x.split()])
 
 
 def entry_point(args):
@@ -52,9 +57,9 @@ def entry_point(args):
     arg_n = eval(args["--n"])
 
     if args["--lambda-lower"]:
-        arg_lambda_fn = LAMBDA_LOWER
+        arg_lambda_fn = lambda_lower
     elif args["--lambda-excel"]:
-        arg_lambda_fn = LAMBDA_EXCEL
+        arg_lambda_fn = lambda_excel
     else:
         arg_lambda_fn = eval(args["--lambda"])
 

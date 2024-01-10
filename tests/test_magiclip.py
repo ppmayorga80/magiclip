@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import pyperclip
 
-from magiclip.magiclip import MagiClip
+from magiclip.magi_clip import MagiClip
 
 
 def test_constructor():
